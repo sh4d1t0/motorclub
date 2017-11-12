@@ -23,3 +23,7 @@ Route::get('/usuarios/{id}', 'UserController@show')
 Route::get('usuarios/nuevo', 'UserController@create');
 
 Route::get('saludo/{name}/{nickname?}', 'WelcomeUserController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

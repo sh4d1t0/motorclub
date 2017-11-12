@@ -32,8 +32,8 @@
                             @auth
                                 <a class="nav-link active" href="{{ url('/home') }}">Home</a>
                             @else
-                                <a class="nav-link" href="{{ route('login') }}">Login</a>
-                                <a class="nav-link" href="{{ route('register') }}">Register</a>
+                                <a class="nav-link" href="{{ route('login') }}">Entrar</a>
+                                <a class="nav-link" href="{{ route('register') }}">Registrar</a>
                             @endauth
                         </nav>
                     @endif
