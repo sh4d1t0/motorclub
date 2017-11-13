@@ -11,7 +11,7 @@ class DashboardTest extends TestCase
     /** @test */
     function it_show_the_dashboard_page_to_authenticated_users()
     {
-        $user = factory(User::class)->create(); // TODO: fix column 'name' in 'field list'
+        $user = factory(User::class)->create();
 
         $this->actingAs($user)
             ->get(route('home'))
