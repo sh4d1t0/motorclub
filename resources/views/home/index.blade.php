@@ -22,21 +22,11 @@
 
     <div class="site-wrapper-inner">
 
-        <div class="cover-container">
+        <div class="container-fluid">
 
             <header class="masthead clearfix">
                 <div class="inner">
-                    <h3 class="masthead-brand">BMW Logo</h3>
-                    @if (Route::has('login'))
-                        <nav class="nav nav-masthead">
-                            @auth
-                                <a class="nav-link active" href="{{ url('/home') }}">Home</a>
-                            @else
-                                <a class="nav-link" href="{{ route('login') }}">Entrar</a>
-                                <a class="nav-link" href="{{ route('register') }}">Registrar</a>
-                            @endauth
-                        </nav>
-                    @endif
+                    <div class="masthead-brand"><img src="{{URL::asset('/images/logo.png')}}" /></div>
                 </div>
             </header>
 
@@ -47,8 +37,24 @@
             </main>
 
             <footer class="mastfoot">
-                <div class="inner">
-                    <p>BMW footer</p>
+                <div class="inner row">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 my-auto">
+                        WWW.BMWMOTOCLUBESMEXICOAC.ORG.MX
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="row">
+                            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                <img class="img-fluid" src="{{URL::asset('/images/solasol.png')}}" />
+                            </div>
+                            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text-right my-auto">
+                                <span class="text-uppercase">BMW MOTORRAD CLUB CIUDAD DE MÉXICO IS AFFILIATED TO
+                                    BMW MOTO CLUBES MÉXICO AND BMW CLUBS INTERNATIONAL COUNCIL</span>
+                            </div>
+                            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                <img class="img-fluid" src="{{URL::asset('/images/logoclubes.png')}}" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </footer>
 
