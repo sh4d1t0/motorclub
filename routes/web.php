@@ -17,7 +17,7 @@ Route::get('/', function () {
 /*
  * Users
  */
-Route::get('usuarios', 'UserController@index');
+/* Route::get('usuarios', 'UserController@index');
 
 Route::get('usuarios/nuevo', 'UserController@create');
 
@@ -33,7 +33,7 @@ Route::patch('/usuarios/{id}', 'UserController@update')
      ->where('id', '[0-9]+');
 
 Route::delete('/usuarios/{id}', 'UserController@destroy')
-     ->where('id', '[0-9]+');
+     ->where('id', '[0-9]+');*/
 
 /*
  * Data User
@@ -43,3 +43,6 @@ Route::get('saludo/{name}/{nickname?}', 'WelcomeUserController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::resource('users', 'UserController');
