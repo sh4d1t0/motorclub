@@ -1,18 +1,18 @@
 <!-- Id Field -->
-<div class="form-group">
+<!--<div class="form-group">
     {!! Form::label('id', 'Id:') !!}
     <p>{!! $user->id !!}</p>
-</div>
+</div>-->
 
 <!-- Firstname Field -->
 <div class="form-group">
-    {!! Form::label('firstname', 'Firstname:') !!}
+    {!! Form::label('firstname', 'Nombre:') !!}
     <p>{!! $user->firstname !!}</p>
 </div>
 
 <!-- Lastname Field -->
 <div class="form-group">
-    {!! Form::label('lastname', 'Lastname:') !!}
+    {!! Form::label('lastname', 'Apellido:') !!}
     <p>{!! $user->lastname !!}</p>
 </div>
 
@@ -23,14 +23,14 @@
 </div>
 
 <!-- Created At Field -->
-<div class="form-group">
+<!--<div class="form-group">
     {!! Form::label('created_at', 'Created At:') !!}
     <p>{!! $user->created_at !!}</p>
-</div>
+</div>-->
 
 <!-- Updated At Field -->
-<div class="form-group">
+<!--<div class="form-group">
     {!! Form::label('updated_at', 'Updated At:') !!}
     <p>{!! $user->updated_at !!}</p>
-</div>
+</div>-->
 
