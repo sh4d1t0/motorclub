@@ -57,6 +57,10 @@ class filesController extends AppBaseController
     {
         $input = $request->all();
 
+        if ($request->hasFile('filename')) {
+            $input['filename'] = $request->file('filename')->store('documents', 'public');
+        }
+
         $files = $this->filesRepository->create($input);
 
         Flash::success('Archivo guardado.');

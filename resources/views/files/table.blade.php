@@ -2,14 +2,16 @@
     <thead>
         <tr>
             <th>Title</th>
-        <th>Filename</th>
+            <th>Descripcion</th>
+            <th>Filename</th>
             <th colspan="3">Action</th>
         </tr>
     </thead>
     <tbody>
     @foreach($files as $files)
         <tr>
-            <td>{!! $files->title !!}</td>
+            <td><a href="{!! asset($files->filename) !!}">{!! $files->title !!}</a></td>
+            <td>{!! $files->description !!}</td>
             <td>{!! $files->filename !!}</td>
             <td>
                 {!! Form::open(['route' => ['files.destroy', $files->id], 'method' => 'delete']) !!}

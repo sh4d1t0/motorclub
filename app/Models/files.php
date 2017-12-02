@@ -48,7 +48,7 @@ class files extends Model
      * @var array
      */
     public static $rules = [
-        
+        'filename' => 'required',
     ];
 
     
