@@ -56,11 +56,15 @@ class filesController extends AppBaseController
      */
     public function store(CreatefilesRequest $request)
     {
+        $user = auth()->user();
+
         $input = $request->all();
 
         if ($request->hasFile('filename')) {
             $input['filename'] = $request->file('filename')->storeAs('documents', $input['title'].'.pdf', 'public');
         }
+
+        $input['user_id'] = $user->getAuthIdentifier();
 
         $files = $this->filesRepository->create($input);
 
@@ -86,7 +90,18 @@ class filesController extends AppBaseController
             return redirect(route('files.index'));
         }
 
-        return view('files.show')->with('files', $files);
+        $headers = [
+            //mimeType: "application/pdf"
+        ];
+
+        return response()->download(
+            storage_path("app/public/{$files->filename}"),
+            null,
+            $headers,
+            ResponseHeaderBag::DISPOSITION_INLINE //It's inline or it's attachment
+        );
+
+        //return view('files.show')->with('files', $files);
     }
 
     /**
@@ -106,7 +121,9 @@ class filesController extends AppBaseController
             return redirect(route('files.index'));
         }
 
-        $headers = [];
+        $headers = [
+            //mimeType: "application/pdf"
+        ];
 
         return response()->download(
             storage_path("app/public/{$files->filename}"),

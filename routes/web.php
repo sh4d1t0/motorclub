@@ -46,5 +46,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('users', 'UserController');
 
+/*
+ * Files
+ */
 Route::resource('files', 'filesController');
 Route::get('files/download/{id}', 'filesController@download');

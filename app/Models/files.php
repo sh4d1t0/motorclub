@@ -27,7 +27,8 @@ class files extends Model
     public $fillable = [
         'title',
         'description',
-        'filename'
+        'filename',
+        'user_id'
     ];
 
     /**
@@ -48,6 +49,8 @@ class files extends Model
      * @var array
      */
     public static $rules = [
+        'title' => 'required',
+        'description' => 'required',
         'filename' => 'required',
     ];
 

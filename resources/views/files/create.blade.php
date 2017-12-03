@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Files
+            Subir documento
         </h1>
     </section>
     <div class="content">
