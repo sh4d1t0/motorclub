@@ -42,12 +42,19 @@ Route::get('saludo/{name}/{nickname?}', 'WelcomeUserController');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home'); //url, function, name method
 
 Route::resource('users', 'UserController');
 
 /*
  * Files
  */
-Route::resource('files', 'filesController');
-Route::get('files/download/{id}', 'filesController@download');
+//Route::resource('files', 'filesController');
+Route::get('el-club/documentos', 'filesController@index')->name('files');
+Route::get('el-club/documentos/crear', 'filesController@create')->name('files/create');
+Route::post('el-club/documentos', 'filesController@store')->name('files');
+Route::get('el-club/documentos/{id}/ver', 'filesController@show')->name('files/{id}/view');
+Route::get('el-club/documentos/{id}/editar', 'filesController@edit')->name('files/{id}/edit');
+Route::patch('el-club/documentos/{id}', 'filesController@update')->name('files/{id}');
+Route::delete('el-club/documentos/{id}', 'filesController@destroy')->name('files/{id}');
+Route::get('el-club/documentos/{id}/descargar', 'filesController@download')->name('files/{id}/download');

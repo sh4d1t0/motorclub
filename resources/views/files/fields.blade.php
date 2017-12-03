@@ -20,5 +20,5 @@
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('files.index') !!}" class="btn btn-default">Cancelar</a>
+    <a href="{!! url('el-club/documentos') !!}" class="btn btn-default">Cancelar</a>
 </div>

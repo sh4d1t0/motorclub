@@ -70,7 +70,10 @@ class filesController extends AppBaseController
 
         Flash::success('Archivo guardado.');
 
-        return redirect(route('files.index'));
+        $files = $this->filesRepository->all();
+
+        return view('files.index')
+            ->with('files', $files);
     }
 
     /**
