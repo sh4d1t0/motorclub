@@ -15,46 +15,45 @@ Route::get('/', function () {
     return view('welcome');
 });
 /*
- * Users
- */
-/* Route::get('usuarios', 'UserController@index');
-
-Route::get('usuarios/nuevo', 'UserController@create');
-
-Route::post('usuarios', 'UserController@store');
-
-Route::get('/usuarios/{id}', 'UserController@show')
-    ->where('id', '[0-9]+');
-
-Route::get('/usuarios/{id}/editar', 'UserController@edit')
-     ->where('id', '[0-9]+');
-
-Route::patch('/usuarios/{id}', 'UserController@update')
-     ->where('id', '[0-9]+');
-
-Route::delete('/usuarios/{id}', 'UserController@destroy')
-     ->where('id', '[0-9]+');*/
-
-/*
  * Data User
  */
-Route::get('saludo/{name}/{nickname?}', 'WelcomeUserController');
-
+Route::get('saludo/{name}/{nickname?}', 'WelcomeUserController');// __invoke for only one function
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home'); //url, function, name method
-
-Route::resource('users', 'UserController');
-
+/*
+ * Users
+ */
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', 'HomeController@index')
+        ->name('home');//url, function, name method
+    Route::resource('users', 'UserController');
+});
 /*
  * Files
  */
-//Route::resource('files', 'filesController');
-Route::get('el-club/documentos', 'filesController@index')->name('files');
-Route::get('el-club/documentos/crear', 'filesController@create')->name('files/create');
-Route::post('el-club/documentos', 'filesController@store')->name('files');
-Route::get('el-club/documentos/{id}/ver', 'filesController@show')->name('files/{id}/view');
-Route::get('el-club/documentos/{id}/editar', 'filesController@edit')->name('files/{id}/edit');
-Route::patch('el-club/documentos/{id}', 'filesController@update')->name('files/{id}');
-Route::delete('el-club/documentos/{id}', 'filesController@destroy')->name('files/{id}');
-Route::get('el-club/documentos/{id}/descargar', 'filesController@download')->name('files/{id}/download');
+//Prefix
+Route::prefix('el-club')->group(function () {
+    Route::get('/documentos', 'filesController@index')
+        ->name('files');
+    Route::get('/documentos/{id}/ver', 'filesController@show')
+        ->name('files/{id}/view')
+        ->where('id', '[0-9]+');
+    Route::get('/documentos/{id}/descargar', 'filesController@download')
+        ->name('files/{id}/download')
+        ->where('id', '[0-9]+');
+    //authenticate
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/documentos/crear', 'filesController@create')
+            ->name('files/create');
+        Route::post('/documentos', 'filesController@store')
+            ->name('files');
+        Route::get('/documentos/{id}/editar', 'filesController@edit')
+            ->name('files/{id}/edit')
+            ->where('id', '[0-9]+');
+        Route::patch('/documentos/{id}', 'filesController@update')
+            ->name('files/{id}')
+            ->where('id', '[0-9]+');
+        Route::delete('/documentos/{id}', 'filesController@destroy')
+            ->name('files/{id}')
+            ->where('id', '[0-9]+');
+    });
+});
