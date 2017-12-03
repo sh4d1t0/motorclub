@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 class filesController extends AppBaseController
 {
@@ -58,7 +59,7 @@ class filesController extends AppBaseController
         $input = $request->all();
 
         if ($request->hasFile('filename')) {
-            $input['filename'] = $request->file('filename')->store('documents', 'public');
+            $input['filename'] = $request->file('filename')->storeAs('documents', $input['title'].'.pdf', 'public');
         }
 
         $files = $this->filesRepository->create($input);
@@ -86,6 +87,35 @@ class filesController extends AppBaseController
         }
 
         return view('files.show')->with('files', $files);
+    }
+
+    /**
+     * Download the specified files.
+     *
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function download($id)
+    {
+        $files = $this->filesRepository->findWithoutFail($id);
+
+        if (empty($files)) {
+            Flash::error('Archivo no encontrado');
+
+            return redirect(route('files.index'));
+        }
+
+        $headers = [];
+
+        return response()->download(
+            storage_path("app/public/{$files->filename}"),
+            null,
+            $headers,
+            ResponseHeaderBag::DISPOSITION_ATTACHMENT //It's inline or it's attachment
+        );
+
+        //return view('files.download')->with('files', $files);
     }
 
     /**
