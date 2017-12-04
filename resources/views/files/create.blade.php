@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Crear usuario
+            Subir documento
         </h1>
     </section>
     <div class="content">
@@ -12,9 +12,9 @@
 
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'users.store']) !!}
+                    {!! Form::open(['url' => 'el-club/documentos', 'files' => true]) !!}
 
-                        @include('users.fields')
+                        @include('files.fields')
 
                     {!! Form::close() !!}
                 </div>

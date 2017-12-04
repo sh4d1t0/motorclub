@@ -3,20 +3,15 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Crear usuario
+            Detalle documento
         </h1>
     </section>
     <div class="content">
-        @include('adminlte-templates::common.errors')
         <div class="box box-primary">
-
             <div class="box-body">
-                <div class="row">
-                    {!! Form::open(['route' => 'users.store']) !!}
-
-                        @include('users.fields')
-
-                    {!! Form::close() !!}
+                <div class="row" style="padding-left: 20px">
+                    @include('files.show_fields')
+                    <a href="{!! route('files.index') !!}" class="btn btn-default">Regresar</a>
                 </div>
             </div>
         </div>
