@@ -23,6 +23,7 @@ class DashboardTest extends TestCase
     function it_redirects_guest_users_to_the_login_page()
     {
         $this->get(route('home'))
-            ->assertStatus(302)->assertRedirect('login');
+            ->assertStatus(302)
+            ->assertRedirect('login');
     }
 }
