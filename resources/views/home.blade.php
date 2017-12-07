@@ -3,7 +3,7 @@
 @section('content')
 <div class="container" style="padding-top: 22px;">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="small-6 small-centered columns">
             <div class="panel panel-default">
                 @include('flash::message')
                 <div class="panel-heading">Dashboard</div>

@@ -9,60 +9,57 @@
 
     <title>BMW Site - Home</title>
 
-    <!-- Bootstrap core CSS -->
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">-->
-
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/cover.css') }}" rel="stylesheet">
 </head>
 
 <body>
 
-<div class="site-wrapper">
-
-    <div class="site-wrapper-inner">
-
-        <div class="container-fluid">
-
-            <header class="masthead clearfix">
-                <div class="inner">
-                    <div class="masthead-brand"><img src="{{URL::asset('/images/logo.png')}}" /></div>
-                </div>
-            </header>
-
-            <main role="main" class="inner cover">
-
-                @yield('content')
-
-            </main>
-
-            <footer class="mastfoot">
-                <div class="inner row">
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 my-auto">
-                        WWW.BMWMOTOCLUBESMEXICOAC.ORG.MX
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                        <div class="row">
-                            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                                <img class="img-fluid" src="{{URL::asset('/images/solasol.png')}}" />
-                            </div>
-                            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text-right my-auto">
-                                <span class="text-uppercase">BMW MOTORRAD CLUB CIUDAD DE MÉXICO IS AFFILIATED TO
-                                    BMW MOTO CLUBES MÉXICO AND BMW CLUBS INTERNATIONAL COUNCIL</span>
-                            </div>
-                            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                                <img class="img-fluid" src="{{URL::asset('/images/logoclubes.png')}}" />
-                            </div>
-                        </div>
+<div class="grid-y" style="height: 100%;">
+    <div class="cell small-2">
+        <div class="grid-x grid-padding-x align-middle">
+            <div class="cell small-6">
+                <div class="grid-x grid-padding-y align-middle">
+                    <div class="cell small-3">
+                        <img src="{{ URL::asset('/images/logo.png') }}">
                     </div>
                 </div>
-            </footer>
-
+            </div>
         </div>
-
     </div>
-
+    <div class="cell small-9">
+        <div class="grid-x grid-padding-x align-middle">
+            <div class="cell small-4">@yield('content')</div>
+        </div>
+    </div>
+    <div class="cell small-1" style="background-color: rgba(0, 0, 0, 0.65)">
+        <div class="grid-x grid-padding-x align-middle">
+            <div class="cell small-6">WWW.BMWMOTOCLUBESMEXICOAC.ORG.MX</div>
+            <div class="cell small-6">
+                <div class="grid-x grid-padding-x align-middle">
+                    <div class="cell small-2">
+                        <img src="{{ URL::asset('/images/solasol.png') }}">
+                    </div>
+                    <div class="cell small-8">
+                        BMW MOTORRAD CLUB CIUDAD DE MÉXICO IS AFFILIATED TO
+                        BMW MOTO CLUBES MÉXICO AND BMW CLUBS INTERNATIONAL COUNCIL
+                    </div>
+                    <div class="cell small-2">
+                        <img src="{{ URL::asset('/images/logoclubes.png') }}"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}"></script>
+<script>
+    $(document).foundation();
+</script>
 </body>
 </html>
