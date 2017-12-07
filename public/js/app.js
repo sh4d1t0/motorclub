@@ -12085,7 +12085,7 @@ Touch.setupSpotSwipe = function($) {
 Touch.setupTouchHandler = function($) {
   $.fn.addTouch = function(){
     this.each(function(i,el){
-      $(el).bind('touchstart touchmove touchend touchcancel', function(event)  {
+      $(el).bind('touchstart touchmove touchend touchcancel',function(){
         //we pass the original event object because the jQuery event
         //object is normalized to w3c specs and does not provide the TouchList
         handleTouch(event);
@@ -12712,10 +12712,6 @@ class AccordionMenu extends __WEBPACK_IMPORTED_MODULE_4__foundation_plugin__["a"
           subId = $sub[0].id || Object(__WEBPACK_IMPORTED_MODULE_3__foundation_util_core__["a" /* GetYoDigits */])(6, 'acc-menu'),
           isActive = $sub.hasClass('is-active');
 
-      if(_this.options.parentLink) {
-        let $anchor = $elem.children('a');
-        $anchor.clone().prependTo($sub).wrap('<li data-is-parent-link class="is-submenu-parent-item is-submenu-item is-accordion-submenu-item"></li>');
-      }
 
       if(_this.options.submenuToggle) {
         $elem.addClass('has-submenu-toggle');
@@ -12936,7 +12932,6 @@ class AccordionMenu extends __WEBPACK_IMPORTED_MODULE_4__foundation_plugin__["a"
   _destroy() {
     this.$element.find('[data-submenu]').slideDown(0).css('display', '');
     this.$element.find('a').off('click.zf.accordionMenu');
-    this.$element.find('[data-is-parent-link]').detach();
 
     if(this.options.submenuToggle) {
       this.$element.find('.has-submenu-toggle').removeClass('has-submenu-toggle');
@@ -12948,13 +12943,6 @@ class AccordionMenu extends __WEBPACK_IMPORTED_MODULE_4__foundation_plugin__["a"
 }
 
 AccordionMenu.defaults = {
-  /**
-   * Adds the parent link to the submenu.
-   * @option
-   * @type {boolean}
-   * @default false
-   */
-  parentLink: false,
   /**
    * Amount of time to animate the opening of a submenu in ms.
    * @option
@@ -13086,7 +13074,7 @@ class Drilldown extends __WEBPACK_IMPORTED_MODULE_5__foundation_plugin__["a" /* 
       var $link = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this);
       var $sub = $link.parent();
       if(_this.options.parentLink){
-        $link.clone().prependTo($sub.children('[data-submenu]')).wrap('<li data-is-parent-link class="is-submenu-parent-item is-submenu-item is-drilldown-submenu-item" role="menuitem"></li>');
+        $link.clone().prependTo($sub.children('[data-submenu]')).wrap('<li class="is-submenu-parent-item is-submenu-item is-drilldown-submenu-item" role="menuitem"></li>');
       }
       $link.data('savedHref', $link.attr('href')).removeAttr('href').attr('tabindex', 0);
       $link.children('[data-submenu]')
@@ -13344,88 +13332,6 @@ class Drilldown extends __WEBPACK_IMPORTED_MODULE_5__foundation_plugin__["a" /* 
   }
 
   /**
-   * Sets the CSS classes for submenu to show it.
-   * @function
-   * @private
-   * @param {jQuery} $elem - the target submenu (`ul` tag)
-   * @param {boolean} trigger - trigger drilldown event
-   */
-  _setShowSubMenuClasses($elem, trigger) {
-    $elem.addClass('is-active').removeClass('invisible').attr('aria-hidden', false);
-    $elem.parent('li').attr('aria-expanded', true);
-    if (trigger === true) {
-      this.$element.trigger('open.zf.drilldown', [$elem]);
-    }
-  }
-
-  /**
-   * Sets the CSS classes for submenu to hide it.
-   * @function
-   * @private
-   * @param {jQuery} $elem - the target submenu (`ul` tag)
-   * @param {boolean} trigger - trigger drilldown event
-   */
-  _setHideSubMenuClasses($elem, trigger) {
-    $elem.removeClass('is-active').addClass('invisible').attr('aria-hidden', true);
-    $elem.parent('li').attr('aria-expanded', false);
-    if (trigger === true) {
-      $elem.trigger('hide.zf.drilldown', [$elem]);
-    }
-  }
-
-  /**
-   * Opens a specific drilldown (sub)menu no matter which (sub)menu in it is currently visible.
-   * Compared to _show() this lets you jump into any submenu without clicking through every submenu on the way to it.
-   * @function
-   * @fires Drilldown#open
-   * @param {jQuery} $elem - the target (sub)menu (`ul` tag)
-   * @param {boolean} autoFocus - if true the first link in the target (sub)menu gets auto focused
-   */
-  _showMenu($elem, autoFocus) {
-
-    var _this = this;
-
-    // Reset drilldown
-    var $expandedSubmenus = this.$element.find('li[aria-expanded="true"] > ul[data-submenu]');
-    $expandedSubmenus.each(function(index) {
-      _this._setHideSubMenuClasses(__WEBPACK_IMPORTED_MODULE_0_jquery___default()(this));
-    });
-
-    // If target menu is root, focus first link & exit
-    if ($elem.is('[data-drilldown]')) {
-      if (autoFocus === true) $elem.find('li[role="treeitem"] > a').first().focus();
-      if (this.options.autoHeight) this.$wrapper.css('height', $elem.data('calcHeight'));
-      return;
-    }
-
-    // Find all submenus on way to root incl. the element itself
-    var $submenus = $elem.children().first().parentsUntil('[data-drilldown]', '[data-submenu]');
-
-    // Open target menu and all submenus on its way to root
-    $submenus.each(function(index) {
-
-      // Update height of first child (target menu) if autoHeight option true
-      if (index === 0 && _this.options.autoHeight) {
-        _this.$wrapper.css('height', __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).data('calcHeight'));
-      }
-
-      var isLastChild = index == $submenus.length - 1;
-
-      // Add transitionsend listener to last child (root due to reverse order) to open target menu's first link
-      // Last child makes sure the event gets always triggered even if going through several menus
-      if (isLastChild === true) {
-        __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).one(Object(__WEBPACK_IMPORTED_MODULE_3__foundation_util_core__["c" /* transitionend */])(__WEBPACK_IMPORTED_MODULE_0_jquery___default()(this)), () => {
-          if (autoFocus === true) {
-            $elem.find('li[role="treeitem"] > a').first().focus();
-          }
-        });
-      }
-
-      _this._setShowSubMenuClasses(__WEBPACK_IMPORTED_MODULE_0_jquery___default()(this), isLastChild);
-    });
-  }
-
-  /**
    * Opens a submenu.
    * @function
    * @fires Drilldown#open
@@ -13440,7 +13346,7 @@ class Drilldown extends __WEBPACK_IMPORTED_MODULE_5__foundation_plugin__["a" /* 
      * @event Drilldown#open
      */
     this.$element.trigger('open.zf.drilldown', [$elem]);
-  }
+  };
 
   /**
    * Hides a submenu
@@ -13452,7 +13358,7 @@ class Drilldown extends __WEBPACK_IMPORTED_MODULE_5__foundation_plugin__["a" /* 
     if(this.options.autoHeight) this.$wrapper.css({height:$elem.parent().closest('ul').data('calcHeight')});
     var _this = this;
     $elem.parent('li').attr('aria-expanded', false);
-    $elem.attr('aria-hidden', true);
+    $elem.attr('aria-hidden', true).addClass('is-closing')
     $elem.addClass('is-closing')
          .one(Object(__WEBPACK_IMPORTED_MODULE_3__foundation_util_core__["c" /* transitionend */])($elem), function(){
            $elem.removeClass('is-active is-closing');
@@ -13507,7 +13413,6 @@ class Drilldown extends __WEBPACK_IMPORTED_MODULE_5__foundation_plugin__["a" /* 
       __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).off('.zf.drilldown');
     });
 
-    this.$element.find('[data-is-parent-link]').detach();
     this.$submenus.removeClass('drilldown-submenu-cover-previous invisible');
 
     this.$element.find('a').each(function(){
@@ -13671,8 +13576,6 @@ class Positionable extends __WEBPACK_IMPORTED_MODULE_1__foundation_plugin__["a" 
     this.triedPositions = {};
     this.position  = this.options.position === 'auto' ? this._getDefaultPosition() : this.options.position;
     this.alignment = this.options.alignment === 'auto' ? this._getDefaultAlignment() : this.options.alignment;
-    this.originalPosition = this.position;
-    this.originalAlignment = this.alignment;
   }
 
   _getDefaultPosition () {
@@ -13754,12 +13657,6 @@ class Positionable extends __WEBPACK_IMPORTED_MODULE_1__foundation_plugin__["a" 
     var $eleDims = __WEBPACK_IMPORTED_MODULE_0__foundation_util_box__["a" /* Box */].GetDimensions($element),
         $anchorDims = __WEBPACK_IMPORTED_MODULE_0__foundation_util_box__["a" /* Box */].GetDimensions($anchor);
 
-
-    if (!this.options.allowOverlap) {
-      // restore original position & alignment before checking overlap
-      this.position = this.originalPosition;
-      this.alignment = this.originalAlignment;
-    }
 
     $element.offset(__WEBPACK_IMPORTED_MODULE_0__foundation_util_box__["a" /* Box */].GetExplicitOffsets($element, $anchor, this.position, this.alignment, this._getVOffset(), this._getHOffset()));
 
@@ -32807,7 +32704,7 @@ __WEBPACK_IMPORTED_MODULE_1__js_foundation_core__["a" /* Foundation */].plugin(_
 
 
 
-var FOUNDATION_VERSION = '6.4.4-rc1';
+var FOUNDATION_VERSION = '6.4.3';
 
 // Global Foundation object
 // This is attached to the window, or used as a module for AMD/Browserify
@@ -33857,9 +33754,7 @@ class Dropdown extends __WEBPACK_IMPORTED_MODULE_3__foundation_positionable__["a
    * @private
    */
   _setPosition() {
-    this.$element.removeClass(`has-position-${this.position} has-alignment-${this.alignment}`);
     super._setPosition(this.$currentAnchor, this.$element, this.$parent);
-    this.$element.addClass(`has-position-${this.position} has-alignment-${this.alignment}`);
   }
 
   /**
@@ -33957,7 +33852,7 @@ class Dropdown extends __WEBPACK_IMPORTED_MODULE_3__foundation_positionable__["a
             if(_this.$anchors.is(e.target) || _this.$anchors.find(e.target).length) {
               return;
             }
-            if(_this.$element.is(e.target) || _this.$element.find(e.target).length) {
+            if(_this.$element.find(e.target).length) {
               return;
             }
             _this.close();
@@ -36504,6 +36399,7 @@ class Reveal extends __WEBPACK_IMPORTED_MODULE_4__foundation_plugin__["a" /* Plu
     this.id = this.$element.attr('id');
     this.isActive = false;
     this.cached = {mq: __WEBPACK_IMPORTED_MODULE_2__foundation_util_mediaQuery__["a" /* MediaQuery */].current};
+    this.isMobile = mobileSniff();
 
     this.$anchor = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(`[data-open="${this.id}"]`).length ? __WEBPACK_IMPORTED_MODULE_0_jquery___default()(`[data-open="${this.id}"]`) : __WEBPACK_IMPORTED_MODULE_0_jquery___default()(`[data-toggle="${this.id}"]`);
     this.$anchor.attr({
@@ -36565,7 +36461,7 @@ class Reveal extends __WEBPACK_IMPORTED_MODULE_4__foundation_plugin__["a" /* Plu
     var outerWidth = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(window).width();
     var height = this.$element.outerHeight();
     var outerHeight = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(window).height();
-    var left, top = null;
+    var left, top;
     if (this.options.hOffset === 'auto') {
       left = parseInt((outerWidth - width) / 2, 10);
     } else {
@@ -36577,17 +36473,13 @@ class Reveal extends __WEBPACK_IMPORTED_MODULE_4__foundation_plugin__["a" /* Plu
       } else {
         top = parseInt((outerHeight - height) / 4, 10);
       }
-    } else if (this.options.vOffset !== null) {
+    } else {
       top = parseInt(this.options.vOffset, 10);
     }
-
-    if (top !== null) {
-      this.$element.css({top: top + 'px'});
-    }
-
-    // only worry about left if we don't have an overlay or we have a horizontal offset,
+    this.$element.css({top: top + 'px'});
+    // only worry about left if we don't have an overlay or we havea  horizontal offset,
     // otherwise we're perfectly in the middle
-    if (!this.$overlay || (this.options.hOffset !== 'auto')) {
+    if(!this.$overlay || (this.options.hOffset !== 'auto')) {
       this.$element.css({left: left + 'px'});
       this.$element.css({margin: '0px'});
     }
@@ -36637,29 +36529,6 @@ class Reveal extends __WEBPACK_IMPORTED_MODULE_4__foundation_plugin__["a" /* Plu
   _handleState(e) {
     if(window.location.hash === ( '#' + this.id) && !this.isActive){ this.open(); }
     else{ this.close(); }
-  }
-
-  /**
-  * Disables the scroll when Reveal is shown to prevent the background from shifting
-  */
-  _disableScroll(){
-    if (__WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).height() > __WEBPACK_IMPORTED_MODULE_0_jquery___default()(window).height()) {
-      var scrollTop = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(window).scrollTop();
-      __WEBPACK_IMPORTED_MODULE_0_jquery___default()("html")
-        .css("top", -scrollTop);
-    }
-  }
-
-  /**
-  * Reenables the scroll when Reveal closes
-  */
-  _enableScroll(){
-    if (__WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).height() > __WEBPACK_IMPORTED_MODULE_0_jquery___default()(window).height()) {
-      var scrollTop = parseInt(__WEBPACK_IMPORTED_MODULE_0_jquery___default()("html").css("top"));
-      __WEBPACK_IMPORTED_MODULE_0_jquery___default()("html")
-        .css("top", "");
-      __WEBPACK_IMPORTED_MODULE_0_jquery___default()(window).scrollTop(-scrollTop);
-    }
   }
 
 
@@ -36721,15 +36590,19 @@ class Reveal extends __WEBPACK_IMPORTED_MODULE_4__foundation_plugin__["a" /* Plu
       this.$element.trigger('closeme.zf.reveal', this.id);
     }
 
-    this._disableScroll();
-
     var _this = this;
 
     function addRevealOpenClasses() {
-
-      __WEBPACK_IMPORTED_MODULE_0_jquery___default()('html').addClass('is-reveal-open');
+      if (_this.isMobile) {
+        if(!_this.originalScrollPos) {
+          _this.originalScrollPos = window.pageYOffset;
+        }
+        __WEBPACK_IMPORTED_MODULE_0_jquery___default()('html, body').addClass('is-reveal-open');
+      }
+      else {
+        __WEBPACK_IMPORTED_MODULE_0_jquery___default()('body').addClass('is-reveal-open');
+      }
     }
-
     // Motion UI method of reveal
     if (this.options.animationIn) {
       function afterAnimation(){
@@ -36854,16 +36727,25 @@ class Reveal extends __WEBPACK_IMPORTED_MODULE_4__foundation_plugin__["a" /* Plu
     this.$element.off('keydown.zf.reveal');
 
     function finishUp() {
-
-      if (__WEBPACK_IMPORTED_MODULE_0_jquery___default()('.reveal:visible').length  === 0) {
-        __WEBPACK_IMPORTED_MODULE_0_jquery___default()('html').removeClass('is-reveal-open');
+      if (_this.isMobile) {
+        if (__WEBPACK_IMPORTED_MODULE_0_jquery___default()('.reveal:visible').length === 0) {
+          __WEBPACK_IMPORTED_MODULE_0_jquery___default()('html, body').removeClass('is-reveal-open');
+        }
+        if(_this.originalScrollPos) {
+          __WEBPACK_IMPORTED_MODULE_0_jquery___default()('body').scrollTop(_this.originalScrollPos);
+          _this.originalScrollPos = null;
+        }
       }
+      else {
+        if (__WEBPACK_IMPORTED_MODULE_0_jquery___default()('.reveal:visible').length  === 0) {
+          __WEBPACK_IMPORTED_MODULE_0_jquery___default()('body').removeClass('is-reveal-open');
+        }
+      }
+
 
       __WEBPACK_IMPORTED_MODULE_1__foundation_util_keyboard__["a" /* Keyboard */].releaseFocus(_this.$element);
 
       _this.$element.attr('aria-hidden', true);
-
-      _this._enableScroll();
 
       /**
       * Fires when the modal is done closing.
@@ -37040,6 +36922,18 @@ Reveal.defaults = {
   additionalOverlayClasses: ''
 };
 
+function iPhoneSniff() {
+  return /iP(ad|hone|od).*OS/.test(window.navigator.userAgent);
+}
+
+function androidSniff() {
+  return /Android/.test(window.navigator.userAgent);
+}
+
+function mobileSniff() {
+  return iPhoneSniff() || androidSniff();
+}
+
 
 
 
@@ -37212,7 +37106,7 @@ class Slider extends __WEBPACK_IMPORTED_MODULE_4__foundation_plugin__["a" /* Plu
       pctOfBar = this._logTransform(pctOfBar);
       break;
     }
-    var value = (this.options.end - this.options.start) * pctOfBar + parseFloat(this.options.start);
+    var value = (this.options.end - this.options.start) * pctOfBar + this.options.start;
 
     return value
   }
