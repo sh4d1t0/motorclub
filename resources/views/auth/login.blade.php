@@ -1,69 +1,68 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Entrar</div>
 
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+    <div class="grid-container fluid">
+        <div class="grid-x grid-margin-x">
+            <div class="cell small-4"><!-- ### --></div>
+            <div class="cell small-4">
+                <div class="card">
+                    <div class="card-divider">
+                        Entrar
+                    </div>
+                    <div class="card-section">
+                        <form class="grid-container" method="POST" action="{{ route('login') }}" data-abide novalidate>
+                            {{ csrf_field() }}
+                            <!--<div data-abide-error class="alert callout" style="display: none;">
+                                <p><i class="fi-alert"></i> Hay algunos errores en el formulario.</p>
+                            </div>-->
+                            @if ($errors->has('email'))
+                                <div data-abide-error class="alert callout">
+                                    <span class="help-text" data-form-error-for="email"><i class="fi-alert"></i> {{ $errors->first('email') }}</span>
+                                </div>
+                            @endif
+                            <div class="cell small-12">
+                                <label for="email">
+                                    E-Mail
+                                    <div class="input-group">
+                                        <input class="input-group-field" id="email" type="email" name="email" value="{{ old('email') }}" required autofocus>
+                                    </div>
+                                    <span class="form-error" data-form-error-for="email">campo requerido</span>
+                                </label>
                             </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Contraseña</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+                            <div class="cell small-12 {{ $errors->has('password') ? ' has-error' : '' }}">
+                                <label for="password">
+                                    Contraseña
+                                    <div class="input-group">
+                                        <input class="input-group-field" id="password" type="password" name="password" required>
+                                    </div>
+                                    <span class="form-error" data-form-error-for="password">campo requerido</span>
+                                    @if ($errors->has('password'))
+                                        <span class="help-text" data-form-error-for="password">{{ $errors->first('password') }}</span>
+                                    @endif
+                                </label>
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Recordarme
-                                    </label>
+                            <div>
+                                <div class="cell small-6 small-offset-4">
+                                    <input id="remember" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                                    <label for="remember">Recordarme</label>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Entrar
-                                </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Olvido su contraseña?
-                                </a>
+                            <div class="form-group">
+                                <div class="cell small-8 small-offset-4">
+                                    <button type="submit" class="button primary">
+                                        Entrar
+                                    </button>
+                                    <a class="clear button" href="{{ route('password.request') }}">
+                                        Olvido su contraseña?
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
+            <div class="cell small-4"><!-- #### --></div>
         </div>
     </div>
-</div>
 @endsection
