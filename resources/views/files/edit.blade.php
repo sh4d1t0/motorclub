@@ -1,21 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="content-header">
-        <h1>
-            Editar documento
-        </h1>
-   </section>
-   <div class="content">
+   <div class="grid-container fluid">
        @include('adminlte-templates::common.errors')
-       <div class="box box-primary">
-           <div class="box-body">
-               <div class="row">
-                   {!! Form::model($files, ['route' => ['files.update', $files->id], 'method' => 'patch']) !!}
-
-                        @include('files.fields')
-
-                   {!! Form::close() !!}
+       <div class="grid-x grid-margin-x">
+           <div class="cell small-6 small-offset-3">
+               <div class="card">
+                   <div class="card-divider">
+                       <h1>Editar documento</h1>
+                   </div>
+                   <div class="card-section">
+                       {!! Form::model($files, ['url' => ['el-club/documentos/'.$files->id.'/editar'], 'method' => 'patch']) !!}
+                            @include('files.fields')
+                       {!! Form::close() !!}
+                   </div>
                </div>
            </div>
        </div>

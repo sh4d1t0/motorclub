@@ -1,17 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="content-header">
-        <h1>
-            Detalle documento
-        </h1>
-    </section>
-    <div class="content">
-        <div class="box box-primary">
-            <div class="box-body">
-                <div class="row" style="padding-left: 20px">
-                    @include('files.show_fields')
-                    <a href="{!! route('files.index') !!}" class="btn btn-default">Regresar</a>
+    <div class="grid-container fluid">
+        <div class="grid-x grid-padding-x">
+            <div class="cell small-6 small-offset-3">
+                <div class="card">
+                    <div class="card-divider">
+                        <h1>Detalle documento</h1>
+                    </div>
+                    <div class="card-section">
+                        @include('files.show_fields')
+                        <a href="{!! url('el-club/documentos') !!}" class="button primary">Regresar</a>
+                    </div>
                 </div>
             </div>
         </div>
