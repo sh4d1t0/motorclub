@@ -1,20 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container" style="padding-top: 22px;">
-    <div class="row">
-        <div class="small-6 small-centered columns">
-            <div class="panel panel-default">
+<div class="grid-container fluid">
+    <div class="grid-x grid-margin-x">
+        <div class="small-6 small-offset-3 small-centered columns">
+            <div class="card">
                 @include('flash::message')
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
+                <div class="card-divider">
+                    Dashboard
+                </div>
+                <div class="card-section">
                     @if (session('status'))
-                        <div class="alert alert-success">
+                        <div class="callout success">
                             {{ session('status') }}
                         </div>
                     @endif
-
                     Estas dentro!
                 </div>
             </div>

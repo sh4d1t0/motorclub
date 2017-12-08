@@ -1,17 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container" style="padding-top: 22px;">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
+    <div class="grid-container fluid">
+        <div class="grid-x grid-padding-x">
+            <div class="cell small-6 small-offset-3">
+                <div class="card">
                     @include('flash::message')
-                    <div class="panel-heading">Datos de usuario</div>
-
-                    <div class="panel-body">
+                    <div class="card-divider">
+                        Datos de usuario
+                    </div>
+                    <div class="card-section">
                     @include('users.show_fields')
                     <!-- For users -->
-                        <a href="{!! route('users.edit', [Auth::user()->id]) !!}" class="btn btn-default">Editar</a>
+                        <a href="{!! route('users.edit', [Auth::user()->id]) !!}" class="button primary">Editar</a>
                         <!-- For admins -->
                     <!--<a href="{!! route('users.index') !!}" class="btn btn-default">Back</a>-->
                     </div>

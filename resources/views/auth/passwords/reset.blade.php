@@ -13,7 +13,6 @@
                               novalidate>
                             {{ csrf_field() }}
                             <input type="hidden" name="token" value="{{ $token }}">
-
                             <div class="cell small-12 {{ $errors->has('email') ? ' has-error' : '' }}">
                                 <label for="email">
                                     E-Mail

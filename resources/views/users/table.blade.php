@@ -1,4 +1,4 @@
-<table class="table table-responsive" id="users-table">
+<table class="stack" id="users-table">
     <thead>
         <tr>
             <th>Firstname</th>
@@ -15,9 +15,9 @@
             <td>{!! $user->email !!}</td>
             <td>
                 {!! Form::open(['route' => ['users.destroy', $user->id], 'method' => 'delete']) !!}
-                <div class='btn-group'>
-                    <a href="{!! route('users.show', [$user->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
-                    <a href="{!! route('users.edit', [$user->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
+                <div class='button-group'>
+                    <a href="{!! route('users.show', [$user->id]) !!}" class='clear button success'><i class="fi-eye size-21"></i></a>
+                    <a href="{!! route('users.edit', [$user->id]) !!}" class='clear button warning'><i class="fi-page-edit size-21"></i></a>
                     {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Estas seguro?')"]) !!}
                 </div>
                 {!! Form::close() !!}
