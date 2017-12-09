@@ -1,47 +1,49 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Restablecer Contraseña</div>
-
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <form class="form-horizontal" method="POST" action="{{ route('password.email') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+    <div class="grid-container fluid">
+        <div class="grid-x grid-margin-x grid-padding-y">
+            <div class="cell hide-for-small-only medium-2 large-4"><!-- ### --></div>
+            <div class="cell small-12 medium-8 large-4">
+                <div class="card">
+                    <div class="card-divider">
+                        Restablecer Contraseña
+                    </div>
+                    <div class="card-section">
+                        @if (session('status'))
+                            <div class="callout success">
+                                {{ session('status') }}
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Enviarme un enlace para recuperar mi contraseña
-                                </button>
+                        @endif
+                        <form class="grid-container" method="POST" action="{{ route('password.email') }}" data-abide
+                              novalidate>
+                            {{ csrf_field() }}
+                            <div class="cell small-12 {{ $errors->has('email') ? ' has-error' : '' }}">
+                                <label for="email">
+                                    E-Mail
+                                    <div class="input-group">
+                                        <input id="email" type="email" class="input-group-field" name="email"
+                                               value="{{ old('email') }}" required autofocus>
+                                    </div>
+                                    <span class="form-error" data-form-error-for="email">campo requerido</span>
+                                    @if ($errors->has('email'))
+                                        <span class="help-text"
+                                              data-form-error-for="email">{{ $errors->first('email') }}</span>
+                                    @endif
+                                </label>
                             </div>
-                        </div>
-                    </form>
+                            <div class="input-group">
+                                <div class="cell small-full">
+                                    <button type="submit" class="button primary">
+                                        Enviarme un enlace para recuperar mi contraseña
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
+            <div class="cell hide-for-small-only medium-2 large-4"><!-- ### --></div>
         </div>
     </div>
-</div>
 @endsection

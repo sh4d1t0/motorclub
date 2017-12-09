@@ -1,38 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class='view_parent_image1'>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="panel panel-default">
-                        @include('flash::message')
-                        <div class="panel-heading">
-                            <h1>El club</h1>
-                        </div>
-                        <div class="panel-body">
-                            <h3>Somos un club que esta afiliado al moto club
-                            nacional BMW y legalmente constituidos
-                            siendo uno de los clubes más numerosos y
-                            de suma importancia a nivel nacional.</h3>
-                            <div class="clearfix"></div>
-                            <a class="btn btn-primary">
-                                Documentos
-                            </a>
-                            <a class="btn btn-primary">
-                                Mesa Directiva
-                            </a>
-                            @include('flash::message')
-                            <div class="clearfix"></div>
-                            <div class="box box-primary">
-                                <div class="box-body">
-                                    @include('files.table')
-                                </div>
+    <div class="grid-container fluid">
+        <div class="grid-x grid-margin-x grid-padding-y">
+            <div class="cell hide-for-small-only medium-2 large-2"><!-- ### --></div>
+            <div class="cell small-12 medium-8 large-8">
+                <h1 class="text-right text-overline">Documentos</h1>
+                <div class="grid-x grid-margin-x grid-padding-y">
+                    @include('flash::message')
+                    @foreach($files as $files)
+                        <div class="cell small-3">
+                            <p>{!! $files->title !!}</p>
+                            <div class='button-group'>
+                                <a href="{{ url('el-club/documentos/'.$files->id.'/ver') }}" class='clear button primary'><i class="fi-eye size-21"></i></a>
+                                <a href="{{ url('el-club/documentos/'.$files->id.'/descargar') }}" class='clear button primary'><i class="fi-page-export-pdf size-21"></i></a>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
+            <div class="cell hide-for-small-only medium-2 large-2"><!-- ### --></div>
         </div>
     </div>
 @endsection

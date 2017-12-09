@@ -1,24 +1,32 @@
 <!-- Title Field -->
-<div class="form-group col-sm-6">
+<div class="cell small-6">
     {!! Form::label('title', 'Titulo:') !!}
-    {!! Form::text('title', null, ['class' => 'form-control']) !!}
+    <div class="input-group">
+        {!! Form::text('title', null, ['class' => 'input-group-field']) !!}
+    </div>
 </div>
 
 <!-- Description Field -->
-<div class="form-group col-sm-12 col-lg-12">
+<div class="cell small-6">
     {!! Form::label('description', 'Descripcion:') !!}
-    {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
+    <div class="input-group">
+        {!! Form::textarea('description', null, ['class' => 'input-group-field']) !!}
+    </div>
 </div>
 
 <!-- Filename Field -->
-<div class="form-group col-sm-6">
+<div class="cell small-6">
     {!! Form::label('filename', 'Archivo:') !!}
-    {!! Form::file('filename') !!}
+    <div class="input-group">
+        {!! Form::file('filename') !!}
+    </div>
 </div>
 <div class="clearfix"></div>
 
 <!-- Submit Field -->
-<div class="form-group col-sm-12">
-    {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! url('el-club/documentos') !!}" class="btn btn-default">Cancelar</a>
+<div class="cell small-6 small-offset-4">
+    <div class="button-group">
+        {!! Form::submit('Guardar', ['class' => 'button primary']) !!}
+        <a href="{!! url('el-club/documentos') !!}" class="button primary">Cancelar</a>
+    </div>
 </div>

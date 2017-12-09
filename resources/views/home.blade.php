@@ -1,24 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container" style="padding-top: 22px;">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                @include('flash::message')
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    Estas dentro!
+    <div class="grid-container fluid">
+        <div class="grid-x grid-padding-x grid-padding-y">
+            <div class="cell hide-for-small-only medium-2 large-4"><!-- ### --></div>
+            <div class="cell small-12 medium-8 large-4">
+                <div class="card">
+                    @include('flash::message')
+                    <div class="card-divider">
+                        Dashboard
+                    </div>
+                    <div class="card-section">
+                        @if (session('status'))
+                            <div class="callout success">
+                                {{ session('status') }}
+                            </div>
+                        @endif
+                        Estas dentro!
+                    </div>
                 </div>
             </div>
+            <div class="cell hide-for-small-only medium-2 large-4"><!-- ### --></div>
         </div>
     </div>
-</div>
 @endsection

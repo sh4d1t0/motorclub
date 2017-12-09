@@ -1,70 +1,70 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Restablecer Contraseña</div>
-
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('password.request') }}">
-                        {{ csrf_field() }}
-
-                        <input type="hidden" name="token" value="{{ $token }}">
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ $email or old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+    <div class="grid-container fluid">
+        <div class="grid-x grid-margin-x grid-padding-y">
+            <div class="cell hide-for-small-only medium-2 large-4"><!-- ### --></div>
+            <div class="cell small-12 medium-8 large-4">
+                <div class="card">
+                    <div class="card-divider">
+                        Restablecer Contraseña
+                    </div>
+                    <div class="card-section">
+                        <form class="grid-container" method="POST" action="{{ route('password.request') }}" data-abide
+                              novalidate>
+                            {{ csrf_field() }}
+                            <input type="hidden" name="token" value="{{ $token }}">
+                            <div class="cell small-12 {{ $errors->has('email') ? ' has-error' : '' }}">
+                                <label for="email">
+                                    E-Mail
+                                    <div class="input-group">
+                                        <input id="email" type="email" class="input-group-field" name="email"
+                                               value="{{ old('email') }}" required autofocus>
+                                    </div>
+                                    <span class="form-error" data-form-error-for="email">campo requerido</span>
+                                    @if ($errors->has('email'))
+                                        <span class="help-text"
+                                              data-form-error-for="email">{{ $errors->first('email') }}</span>
+                                    @endif
+                                </label>
                             </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Contraseña</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+                            <div class="cell small-12 {{ $errors->has('password') ? ' has-error' : '' }}">
+                                <label for="password">
+                                    Contraseña
+                                    <div class="input-group">
+                                        <input id="password" type="password" class="input-group-field" name="password"
+                                               value="{{ old('password') }}" required>
+                                    </div>
+                                    <span class="form-error" data-form-error-for="password">campo requerido</span>
+                                    @if ($errors->has('password'))
+                                        <span class="help-text"
+                                              data-form-error-for="password">{{ $errors->first('password') }}</span>
+                                    @endif
+                                </label>
                             </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirmar Contraseña</label>
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-
-                                @if ($errors->has('password_confirmation'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                    </span>
-                                @endif
+                            <div class="cell small-12">
+                                <label for="password-confirm">
+                                    Confirma Contraseña
+                                    <div class="input-group">
+                                        <input class="input-group-field" id="password-confirm"
+                                               name="password_confirmation" type="password" pattern="alpha_numeric"
+                                               data-equalto="password" required>
+                                    </div>
+                                    <span class="form-error" data-form-error-for="password-confirm">Las contraseñas no son identicas</span>
+                                </label>
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Restablecer Contraseña
-                                </button>
+                            <div class="input-group">
+                                <div class="cell small-full">
+                                    <button type="submit" class="button primary">
+                                        Restablecer Contraseña
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
+            <div class="cell hide-for-small-only medium-2 large-4"><!-- ### --></div>
         </div>
     </div>
-</div>
 @endsection
