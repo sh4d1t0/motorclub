@@ -21,23 +21,25 @@
 
 .size-72 { font-size: 72px; }
 
+.text-underline {
+    text-decoration: underline;
+}
+
+.text-overline {
+    text-decoration: overline;
+}
+
+.text-line-through {
+    text-decoration: line-through;
+}
+
 /*
  * Base structure
  */
 html,
 body {
-    height: 100%;
-    background-color: #ffffff;
-    background-image: url("../images/el-club/background.png");
-}
-
-.navbar {
-    margin-bottom: 0px;
-}
-
-.view_parent_image1 {
-    background-color: #ffffff;
-    background-image: url('../images/el-club/background.png');
+    background-image: url("../images/el-club/background_docs.png");
+    background-repeat: no-repeat;
     background-size: cover;
-    padding-top: 22px;
+    background-position: center;
 }
