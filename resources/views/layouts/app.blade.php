@@ -36,7 +36,7 @@
             </ul>
         </div>
         <div class="top-bar-right">
-            <ul class="menu">
+            <ul class="dropdown menu" data-dropdown-menu>
                 <!-- Authentication Links -->
                 @guest
                     <li><a href="{{ route('login') }}">Login</a></li>
@@ -46,20 +46,14 @@
                         <a href="#">{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</a>
                         <ul class="menu vertical">
                             <li>
-                                <a href="{!! route('users.show', [Auth::user()->id]) !!}">
-                                    Mostrar datos
-                                </a>
+                                <a href="{!! route('users.show', [Auth::user()->id]) !!}">Mostrar datos</a>
                             </li>
                             <li>
-                                <a href="{!! url('el-club/documentos') !!}">
-                                    El-club
-                                </a>
+                                <a href="{!! url('el-club/documentos') !!}">El-club</a>
                             </li>
                             <li>
                                 <a href="{{ route('logout') }}"
-                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    Logout
-                                </a>
+                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                       style="display: none;">
                                     {{ csrf_field() }}
