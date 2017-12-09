@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="grid-container fluid">
-        <div class="grid-x grid-margin-x">
+        <div class="grid-x grid-margin-x grid-padding-y">
             <div class="cell small-6 small-offset-3">
                 <div class="card">
                     <div class="card-divider">
