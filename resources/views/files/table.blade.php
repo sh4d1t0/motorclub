@@ -1,4 +1,4 @@
-<table class="stack" id="files-table">
+<table id="files-table">
     <thead>
         <tr>
             <th>Titulo</th>

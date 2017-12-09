@@ -3,7 +3,8 @@
 @section('content')
     <div class="grid-container fluid">
         <div class="grid-x grid-margin-x grid-padding-y">
-            <div class="cell small-6 small-offset-3">
+            <div class="cell hide-for-small-only medium-2 large-4"><!-- ### --></div>
+            <div class="cell small-12 medium-8 large-4">
                 <div class="card">
                     <div class="card-divider">
                         Restablecer Contraseña
@@ -53,7 +54,7 @@
                                 </label>
                             </div>
                             <div class="input-group">
-                                <div class="cell small-6 small-offset-4">
+                                <div class="cell small-full">
                                     <button type="submit" class="button primary">
                                         Restablecer Contraseña
                                     </button>
@@ -63,6 +64,7 @@
                     </div>
                 </div>
             </div>
+            <div class="cell hide-for-small-only medium-2 large-4"><!-- ### --></div>
         </div>
     </div>
 @endsection

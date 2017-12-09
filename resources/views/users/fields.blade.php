@@ -23,7 +23,7 @@
 </div>
 
 <!-- Submit Field -->
-<div class="cell small-6 small-offset-5">
+<div class="cell small-full">
     <div class="button-group">
         {!! Form::submit('Guardar', ['class' => 'button primary']) !!}
         <a href="{!! route('home') !!}" class="button primary">Cancelar</a>

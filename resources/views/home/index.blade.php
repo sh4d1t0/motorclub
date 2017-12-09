@@ -25,12 +25,12 @@
     <div class="grid-y fluid grid-frame">
         <div class="cell small-2">
             <div class="grid-x grid-padding-x grid-padding-y align-middle">
-                <div class="cell small-2">
+                <div class="cell small-6 medium-2">
                     <img src="{{ URL::asset('/images/logo.png') }}">
                 </div>
             </div>
         </div>
-        <div class="cell small-9">
+        <div class="cell small-8 medium-9">
             <div class="grid-y grid-frame">
                 <div class="cell small-2 medium-4">
                     <!-- #### -->
@@ -47,12 +47,12 @@
                 </div>
             </div>
         </div>
-        <div class="cell small-1" style="background-color: rgba(0, 0, 0, 0.65)">
+        <div class="cell small-2 medium-1" style="background-color: rgba(0, 0, 0, 0.65)">
             <div class="grid-x grid-padding-x align-middle">
                 <div class="cell small-12 medium-6">
                     <p>WWW.BMWMOTOCLUBESMEXICOAC.ORG.MX</p>
                 </div>
-                <div class="cell small-12 medium-6">
+                <div class="cell hide-for-small-only medium-6">
                     <div class="grid-x grid-padding-x align-middle">
                         <div class="cell small-2">
                             <img src="{{ URL::asset('/images/solasol.png') }}">
