@@ -13,10 +13,10 @@
     <!-- fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/foundation-icons.css') }}" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
 <div id="app">
@@ -70,9 +70,9 @@
 </div>
 
 <!-- Scripts -->
-<script src="{{ asset('js/app.js') }}"></script>
-<script>
-    $(document).foundation();
-</script>
+<script src="{{ mix('/js/manifest.js') }}"></script>
+<script src="{{ mix('/js/vendor.js') }}"></script>
+<script src="{{ mix('js/app.js') }}"></script>
+<script>$(document).foundation();</script>
 </body>
 </html>

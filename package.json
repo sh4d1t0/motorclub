@@ -14,7 +14,7 @@
         "cross-env": "^5.1",
         "foundation-sites": "^6.4.3",
         "jquery": "^3.2",
-        "laravel-mix": "^1.7.0",
+        "laravel-mix": "^1.7.2",
         "lodash": "^4.17.4",
         "vue": "^2.1.10"
     }

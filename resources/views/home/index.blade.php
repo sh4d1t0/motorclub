@@ -14,9 +14,9 @@
     <!-- fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
     <!-- styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="{{ asset('css/cover.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/cover.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -72,6 +72,9 @@
 </div>
 
 <!-- Scripts -->
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ mix('/js/manifest.js') }}"></script>
+<script src="{{ mix('/js/vendor.js') }}"></script>
+<script src="{{ mix('js/app.js') }}"></script>
+<script>$(document).foundation();</script>
 </body>
 </html>

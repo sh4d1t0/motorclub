@@ -1,14 +1,12 @@
 /*
  * Base structure
  */
-
-html,
 body {
-    height: 100%;
-    background-color: #ffffff;
-    background-image: url("../images/welcome.jpg");
-}
-body {
-    color: #fff;
-    text-shadow: 0 .05rem .1rem rgba(0,0,0,.5);
+  background-image: url("../images/welcome.jpg");
+  background-color: #0a0a0a;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: #fefefe;
+  text-shadow: 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
 }

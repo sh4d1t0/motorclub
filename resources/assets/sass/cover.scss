@@ -1,0 +1,30 @@
+// height: 100%;
+// background-color: #ffffff;
+// background-image: url("../images/welcome.jpg");
+// color: #fff;
+// text-shadow: 0 .05rem .1rem rgba(0,0,0,.5);
+
+// 1. Global
+// ---------
+$light-gray: #e6e6e6;
+$medium-gray: #cacaca;
+$dark-gray: #8a8a8a;
+$black: #0a0a0a;
+$white: #fefefe;
+$body-background: $white;
+$body-font-color: $black;
+$body-font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+$body-antialiased: true;
+
+/*
+ * Base structure
+ */
+body {
+  background-image: url("../images/welcome.jpg");
+  background-color: $black;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: $white;
+  text-shadow: 0.05rem .1rem rgba(0, 0, 0, .5);
+}
