@@ -1,11 +1,11 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
-class CreatefilesTable extends Migration
+class EventsTypes extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -13,15 +13,12 @@ class CreatefilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('files', function (Blueprint $table) {
+        Schema::create('event_types', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->text('description');
-            $table->string('filename');
-            $table->integer('user_id')->unsigned()->nullable();
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -32,6 +29,6 @@ class CreatefilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('files');
+        Schema::dropIfExists('event_types');
     }
 }

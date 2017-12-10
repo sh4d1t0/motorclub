@@ -57,3 +57,7 @@ Route::prefix('el-club')->group(function () {
             ->where('id', '[0-9]+');
     });
 });
+/*
+ * Events
+ */
+Route::resource('events', 'EventsController');
