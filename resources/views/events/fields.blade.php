@@ -1,65 +1,87 @@
 <!-- Type Event Field -->
-<div class="form-group col-sm-6">
+<div class="cell small-6">
     {!! Form::label('type_event', 'Type Event:') !!}
-    {!! Form::select('type_event', [], null, ['class' => 'form-control']) !!}
+    <div class="input-group">
+        {!! Form::select('type_event', [], null, ['class' => 'form-control']) !!}
+    </div>
 </div>
 
 <!-- Start Date Field -->
-<div class="form-group col-sm-6">
+<div class="cell small-6">
     {!! Form::label('start_date', 'Start Date:') !!}
-    {!! Form::date('start_date', null, ['class' => 'form-control']) !!}
+    <div class="input-group">
+        {!! Form::date('start_date', null, ['class' => 'form-control']) !!}
+    </div>
 </div>
 
 <!-- End Date Field -->
-<div class="form-group col-sm-6">
+<div class="cell small-6">
     {!! Form::label('end_date', 'End Date:') !!}
-    {!! Form::date('end_date', null, ['class' => 'form-control']) !!}
+    <div class="input-group">
+        {!! Form::date('end_date', null, ['class' => 'form-control']) !!}
+    </div>
 </div>
 
 <!-- Title Field -->
-<div class="form-group col-sm-6">
+<div class="cell small-6">
     {!! Form::label('title', 'Title:') !!}
-    {!! Form::text('title', null, ['class' => 'form-control']) !!}
+    <div class="input-group">
+        {!! Form::text('title', null, ['class' => 'form-control']) !!}
+    </div>
 </div>
 
 <!-- Purpose Field -->
-<div class="form-group col-sm-6">
+<div class="cell small-6">
     {!! Form::label('purpose', 'Purpose:') !!}
-    {!! Form::text('purpose', null, ['class' => 'form-control']) !!}
+    <div class="input-group">
+        {!! Form::text('purpose', null, ['class' => 'form-control']) !!}
+    </div>
 </div>
 
 <!-- Description Field -->
-<div class="form-group col-sm-12 col-lg-12">
+<div class="cell small-6">
     {!! Form::label('description', 'Description:') !!}
-    {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
+    <div class="input-group">
+        {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
+    </div>
 </div>
 
 <!-- Venue Field -->
-<div class="form-group col-sm-6">
+<div class="cell small-6">
     {!! Form::label('venue', 'Venue:') !!}
-    {!! Form::text('venue', null, ['class' => 'form-control']) !!}
+    <div class="input-group">
+        {!! Form::text('venue', null, ['class' => 'form-control']) !!}
+    </div>
 </div>
 
 <!-- Kilometers Field -->
-<div class="form-group col-sm-6">
+<div class="cell small-6">
     {!! Form::label('kilometers', 'Kilometers:') !!}
-    {!! Form::text('kilometers', null, ['class' => 'form-control']) !!}
+    <div class="input-group">
+        {!! Form::text('kilometers', null, ['class' => 'form-control']) !!}
+    </div>
 </div>
 
 <!-- Weather Field -->
-<div class="form-group col-sm-6">
+<div class="cell small-6">
     {!! Form::label('weather', 'Weather:') !!}
-    {!! Form::text('weather', null, ['class' => 'form-control']) !!}
+    <div class="input-group">
+        {!! Form::text('weather', null, ['class' => 'form-control']) !!}
+    </div>
 </div>
 
 <!-- Ground Field -->
-<div class="form-group col-sm-6">
+<div class="cell small-6">
     {!! Form::label('ground', 'Ground:') !!}
-    {!! Form::text('ground', null, ['class' => 'form-control']) !!}
+    <div class="input-group">
+        {!! Form::text('ground', null, ['class' => 'form-control']) !!}
+    </div>
 </div>
 
 <!-- Submit Field -->
-<div class="form-group col-sm-12">
-    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('events.index') !!}" class="btn btn-default">Cancel</a>
+<div class="cell small-12">
+    <div class="button-group">
+        {!! Form::submit('Guardar', ['class' => 'button primary']) !!}
+        <a href="{!! route('events.index') !!}" class="btn btn-default">Cancelar</a>
+    </div>
 </div>

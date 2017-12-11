@@ -1,19 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="content-header">
-        <h1>
-            Events
-        </h1>
-    </section>
-    <div class="content">
-        <div class="box box-primary">
-            <div class="box-body">
-                <div class="row" style="padding-left: 20px">
-                    @include('events.show_fields')
-                    <a href="{!! route('events.index') !!}" class="btn btn-default">Back</a>
+    <div class="grid-container fluid">
+        <div class="grid-x grid-padding-x">
+            <div class="cell hide-for-small-only medium-2 large-4"><!-- ### --></div>
+            <div class="cell small-12 medium-8 large-4">
+                <div class="card">
+                    <div class="card-divider">
+                        <h1>Detalle de el evento</h1>
+                    </div>
+                    <div class="card-section">
+                        @include('files.show_fields')
+                        <a href="{!! route('events.index') !!}" class="button primary">Regresar</a>
+                    </div>
                 </div>
             </div>
+            <div class="cell hide-for-small-only medium-2 large-4"><!-- ### --></div>
         </div>
     </div>
 @endsection

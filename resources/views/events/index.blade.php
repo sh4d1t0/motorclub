@@ -1,26 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="content-header">
-        <h1 class="pull-left">Events</h1>
-        <h1 class="pull-right">
-           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('events.create') !!}">Add New</a>
-        </h1>
-    </section>
-    <div class="content">
-        <div class="clearfix"></div>
-
-        @include('flash::message')
-
-        <div class="clearfix"></div>
-        <div class="box box-primary">
-            <div class="box-body">
-                    @include('events.table')
+    <section class="grid-container">
+        <div class="grid-x grid-padding-x align-center-middle">
+            <div class="cell small-4">
+                <h1 class="text-left">Eventos</h1>
+            </div>
+            <div class="cell small-4"><!-- ### --></div>
+            <div class="cell small-4">
+                <h1 class="text-right">
+                    <a class="button primary" href="{!! route('events.create') !!}">Agregar nuevo</a>
+                </h1>
             </div>
         </div>
-        <div class="text-center">
-        
-        </div>
+    </section>
+    <div class="grid-container">
+        <div class="clear"></div>
+        @include('flash::message')
+        <div class="clear"></div>
+        @include('events.table')
+        <div class="text-center"></div>
     </div>
 @endsection
 

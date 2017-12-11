@@ -1,7 +1,7 @@
-<table class="table table-responsive" id="events-table">
+<table id="events-table">
     <thead>
         <tr>
-            <th>Type Event</th>
+        <th>Type Event</th>
         <th>Start Date</th>
         <th>End Date</th>
         <th>Title</th>
@@ -11,7 +11,7 @@
         <th>Kilometers</th>
         <th>Weather</th>
         <th>Ground</th>
-            <th colspan="3">Action</th>
+        <th colspan="3">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -29,10 +29,10 @@
             <td>{!! $events->ground !!}</td>
             <td>
                 {!! Form::open(['route' => ['events.destroy', $events->id], 'method' => 'delete']) !!}
-                <div class='btn-group'>
-                    <a href="{!! route('events.show', [$events->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
-                    <a href="{!! route('events.edit', [$events->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
-                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                <div class='button-group'>
+                    <a href="{!! route('events.show', [$events->id]) !!}" class='clear button primary'><i class="fi-eye size-21"></i></a>
+                    <a href="{!! route('events.edit', [$events->id]) !!}" class='clear button warning'><i class="glyphicon glyphicon-edit"></i></a>
+                    {!! Form::button('<i class="fi-trash"></i>', ['type' => 'submit', 'class' => 'clear button alert', 'onclick' => "return confirm('Estas seguro?')"]) !!}
                 </div>
                 {!! Form::close() !!}
             </td>
